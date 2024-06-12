@@ -440,13 +440,13 @@ export default {
    }
 }
 </script>
-<style>
+<!-- <style>
 .PiePagina{
    position:fixed;
    bottom: 0;
    left: 0;
    width: 100%;
-   background-color: white;
+   background-color: rgb(0, 0, 0);
    z-index: 999;
 
-}</style>
+}</style> -->
