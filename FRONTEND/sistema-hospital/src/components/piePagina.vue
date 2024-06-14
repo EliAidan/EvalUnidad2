@@ -58,7 +58,7 @@
                                 
                         </a>
                     </div>
-                    <span class="text-lg text-gray-500 text-center block">©<a href="https://pagedone.io/">pagedone</a> 2024, All rights reserved.</span>
+                    <span class="text-lg text-gray-500 text-center block">©<a href="https://pagedone.io/">PrivilegeCare</a> 2024, All rights reserved.</span>
             </div>
         </div>
     </footer>
