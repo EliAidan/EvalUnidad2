@@ -27,11 +27,11 @@
                         </svg>
                 </a>
                     <ul class="text-lg flex items-center justify-center flex-col gap-7 md:flex-row md:gap-12 transition-all duration-500 py-16 mb-10 border-b border-gray-200">
-                        <li><a href="#" class="text-gray-800 hover:text-gray-900">Pagedone</a></li>
-                        <li><a href="#" class=" text-gray-800 hover:text-gray-900">Products</a></li>
-                        <li><a href="#" class=" text-gray-800 hover:text-gray-900">Resources</a></li>
-                        <li><a href="#" class=" text-gray-800 hover:text-gray-900">Blogs</a></li>
-                        <li><a href="#" class=" text-gray-800 hover:text-gray-900">Support</a></li>
+                        <li><a href="#" class="text-gray-800 hover:text-gray-900">PrivilegeCare</a></li>
+                        <li><a href="#" class=" text-gray-800 hover:text-gray-900">Consultas</a></li>
+                        <li><a href="#" class=" text-gray-800 hover:text-gray-900">Recursos</a></li>
+                        <li><a href="#" class=" text-gray-800 hover:text-gray-900">Blog</a></li>
+                        <li><a href="#" class=" text-gray-800 hover:text-gray-900">Soporte</a></li>
                     </ul>
                     <div class="flex space-x-10 justify-center items-center mb-14">
                         <a href="#" class="block  text-gray-900 transition-all duration-500 hover:text-indigo-600 ">
