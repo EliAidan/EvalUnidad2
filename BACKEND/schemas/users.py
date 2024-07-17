@@ -29,3 +29,4 @@ class UserLogin(BaseModel):
     Correo_electronico: str
     Contrasena: str
     Numero_Telefonico_Movil: str
+

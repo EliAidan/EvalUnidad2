@@ -19,3 +19,4 @@ class Rol(RolBase):
     ID: int
     class Config:
         orm_mode = True
+

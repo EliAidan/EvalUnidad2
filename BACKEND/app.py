@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from routes.users import user
-from routes.person import person
+from routes.persons import person
 from routes.rol import rol
-from routes.usersrols import userrol
+from routes.usersrol import userrol
 
 app=FastAPI(
-    title="Hospital Privilage Care",
+    title="Hospital",
     description="API para el almacenamiento de informacipn de un hospital"
 )
 app.include_router(user)
