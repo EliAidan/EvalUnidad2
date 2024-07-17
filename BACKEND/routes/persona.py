@@ -1,81 +1,71 @@
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter
 from pydantic import BaseModel
 from datetime import datetime
-from typing import Optional, List
 
-persona = APIRouter()
-personas=[]
+person = APIRouter()
+persons = []
 
-class model_personas(BaseModel):
-    id:int
+#personsModel
+class model_person(BaseModel):
+    id:str
     nombre:str
-    primer_apellido:str
-    segundo_apellido:Optional[str]
-    edad:int
+    primer_apellido: str
+    segundo_apellido: str
+    direccion: str
+    telefono: str
+    correo: str
+    sangre: str
     fecha_nacimiento: datetime
-    curp: str
-    tipo_sangre: str
-    created_at: datetime = datetime.now()
-    estatus: bool = False
+    created_at:datetime = datetime.now()
+    estatus:bool=False
 
-# Obtener todas las personas
-@persona.get('/personas')
-def getPersonas():
-    return personas
+@person.get('/')
 
-# Obtener una persona por su ID
-@persona.get('/personas/{persona_id}')
-def getPersona(persona_id: int):
-    for persona in personas:
-        if persona['id'] == persona_id:
-            return persona
-    raise HTTPException(status_code=404, detail="Persona no encontrada")
+def bienvenida():
+    return "Bienvenido al sistema de apis"
 
-# Guardar una nueva persona
-@persona.post('/personas')
-def save_persona(datos_persona: model_personas):
-    personas.append(datos_persona.dict())
-    return "Datos guardados correctamente"
+@person.get('/persons', tags=["Personas"])
 
-# Actualizar datos de una persona por su ID
-@persona.put('/personas/{persona_id}')
-def updatePersona(persona_id: int, datos_persona: model_personas):
-    for index, persona in enumerate(personas):
-        if persona['id'] == persona_id:
-            personas[index] = datos_persona.dict()
-            return "Datos actualizados correctamente"
-    raise HTTPException(status_code=404, detail="Persona no encontrada")
+def get_personas():
+    return persons
 
-# Eliminar una persona por su ID
-@persona.delete('/personas/{persona_id}')
-def deletePersona(persona_id: int):
-    for index, persona in enumerate(personas):
-        if persona['id'] == persona_id:
-            del personas[index]
-            return "Persona eliminada correctamente"
-    raise HTTPException(status_code=404, detail="Persona no encontrada")
+@person.post('/persons', tags=["Personas"] )
 
-# Buscar personas por criterios específicos
-@persona.get('/buscar-personas')
-def buscar_personas(nombre: Optional[str] = None,
-                    primer_apellido: Optional[str] = None,
-                    segundo_apellido: Optional[str] = None,
-                    fecha_nacimiento: Optional[datetime] = None):
-    resultados = personas.copy()  # Copia de la lista original
+def save_personas(insert_persons:model_person):
+    persons.append(insert_persons)
+    print (insert_persons)
+    return "Datos guardados"
 
-    if nombre:
-        resultados = [persona for persona in resultados if persona['nombre'] == nombre]
+@person.post('/person/{person_id}', tags=["Personas"])
 
-    if primer_apellido:
-        resultados = [persona for persona in resultados if persona['primer_apellido'] == primer_apellido]
+def get_persona(person_id: str):
+    for person in persons:
+        if person.id== person_id:
+            return person
+    return "No existe el registro"
 
-    if segundo_apellido:
-        resultados = [persona for persona in resultados if persona.get('segundo_apellido') == segundo_apellido]
+@person.delete('/person/{person_id}', tags=["Personas"])
 
-    if fecha_nacimiento:
-        resultados = [persona for persona in resultados if persona['fecha_nacimiento'] == fecha_nacimiento]
+def delete_persona(person_id: str):
+    for person in persons:
+        if person.id == person_id:
+            persons.remove(person)
+            return "Registro eliminado correctamente"
+    return "Registro no encontrado"
 
-    if not any([nombre, primer_apellido, segundo_apellido, fecha_nacimiento]):
-        raise HTTPException(status_code=400, detail="Debe proporcionar al menos un criterio de búsqueda")
+@person.put('/person/{person_id}', tags=["Personas"])
 
-    return resultados
+def update_persona(person_id: str, updateperson: model_person):
+    for person in persons:
+        if person.id == person_id:
+            person.nombre=updateperson.nombre
+            person.primer_apellido=updateperson.primer_apellido
+            person.segundo_apellido=updateperson.segundo_apellido
+            person.direccion=updateperson.direccion
+            person.telefono=updateperson.telefono
+            person.correo=updateperson.correo
+            person.sangre=updateperson.sangre
+            person.fecha_nacimiento=updateperson.fecha_nacimiento
+            person.estatus=updateperson.estatus
+            return "Registro actualizado correctamente"
+    return "Registro no encontrado"

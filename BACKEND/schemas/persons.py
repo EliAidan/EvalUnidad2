@@ -1,13 +1,13 @@
 from typing import List, Union
 from pydantic import BaseModel
-from datetime import datetime
+from datetime import datetime, date
 
 class PersonBase(BaseModel):
     Titulo_Cortesia: str
     Nombre: str
     Primer_Apellido: str
     Segundo_Apellido: str
-    Fecha_Nacimiento: datetime
+    Fecha_Nacimiento: date
     Fotografia: str
     Genero: str
     Tipo_Sangre: str
@@ -22,7 +22,6 @@ class PersonUpdate(PersonBase):
     pass
 
 class Person(PersonBase):
-    id: int
-    #owner_id: int clave foranea
+    ID: int
     class Config:
         orm_mode = True
