@@ -1,71 +1,61 @@
-from fastapi import APIRouter
-from pydantic import BaseModel
-from datetime import datetime
+# from fastapi import APIRouter
+# from pydantic import BaseModel
+# from datetime import datetime
+# from typing import Optional
 
-person = APIRouter()
-persons = []
+# persona = APIRouter()
+# personas = []
 
-#personsModel
-class model_person(BaseModel):
-    id:str
-    nombre:str
-    primer_apellido: str
-    segundo_apellido: str
-    direccion: str
-    telefono: str
-    correo: str
-    sangre: str
-    fecha_nacimiento: datetime
-    created_at:datetime = datetime.now()
-    estatus:bool=False
+# class model_personas(BaseModel):
+#     id:int
+#     nombre:str
+#     primer_apellido:str
+#     segundo_apellido:Optional[str]
+#     edad:int
+#     fecha_nacimiento:datetime
+#     curp:str
+#     tipo_sangre:str
+#     created_at:datetime = datetime.now()
+#     estatus:bool = False
 
-@person.get('/')
 
-def bienvenida():
-    return "Bienvenido al sistema de apis"
 
-@person.get('/persons', tags=["Personas"])
+# @persona.get('/')
+# def bienvenida():
+#     return "Bienvenido al api del sistema"
 
-def get_personas():
-    return persons
+# @persona.get("/personas")
+# def get_personas():
+#     return personas
 
-@person.post('/persons', tags=["Personas"] )
+# @persona.post("/personas")
+# def savePersonas(datos_persona:model_personas):
+#     personas.append(datos_persona)
+#     return "Datos guardados correctamente"
 
-def save_personas(insert_persons:model_person):
-    persons.append(insert_persons)
-    print (insert_persons)
-    return "Datos guardados"
+# @persona.get("/personas/{persona_id}")
+# def get_persona(persona_id: int):
+#     for persona in personas:
+#         if persona.id == persona_id:
+#             return persona
 
-@person.post('/person/{person_id}', tags=["Personas"])
 
-def get_persona(person_id: str):
-    for person in persons:
-        if person.id== person_id:
-            return person
-    return "No existe el registro"
+# @persona.put("/personas/{persona_id}")
+# def update_persona(persona_id: int, datos_persona: model_personas):
+#     for index, persona in enumerate(personas):
+#         if persona.id == persona_id:
+#             # Evitar actualizar el campo 'id'
+#             datos_persona.id = persona.id  # Mantener el mismo id
+#             personas[index] = datos_persona
+#             return "Datos actualizados correctamente"
 
-@person.delete('/person/{person_id}', tags=["Personas"])
 
-def delete_persona(person_id: str):
-    for person in persons:
-        if person.id == person_id:
-            persons.remove(person)
-            return "Registro eliminado correctamente"
-    return "Registro no encontrado"
+# @persona.delete("/personas/{persona_id}")
+# def delete_persona(persona_id: int):
+#     for index, persona in enumerate(personas):
+#         if persona.id == persona_id:
+#             del personas[index]
+#             return "Persona eliminada correctamente"
 
-@person.put('/person/{person_id}', tags=["Personas"])
 
-def update_persona(person_id: str, updateperson: model_person):
-    for person in persons:
-        if person.id == person_id:
-            person.nombre=updateperson.nombre
-            person.primer_apellido=updateperson.primer_apellido
-            person.segundo_apellido=updateperson.segundo_apellido
-            person.direccion=updateperson.direccion
-            person.telefono=updateperson.telefono
-            person.correo=updateperson.correo
-            person.sangre=updateperson.sangre
-            person.fecha_nacimiento=updateperson.fecha_nacimiento
-            person.estatus=updateperson.estatus
-            return "Registro actualizado correctamente"
-    return "Registro no encontrado"
+

@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List,Union
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -18,6 +18,6 @@ class UserRolUpdate(UserRolBase):
 class UserRol(UserRolBase):
     Usuario_ID: int
     Rol_ID: int
+    
     class Config:
         orm_mode = True
-

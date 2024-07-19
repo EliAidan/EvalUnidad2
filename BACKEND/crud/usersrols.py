@@ -1,7 +1,6 @@
 import models.usersrols
 import schemas.usersrols
 from sqlalchemy.orm import Session
-import models, schemas
 
 def get_userrol(db: Session, id_user: int, id_rol: int):
     return db.query(models.usersrols.UserRol).filter(models.usersrols.UserRol.Usuario_ID == id_user, models.usersrols.UserRol.Rol_ID== id_rol).first()

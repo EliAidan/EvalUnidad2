@@ -5,7 +5,7 @@ from config.db import Base
 import models.persons
 import enum
 
-class MyEstatus(str,enum.Enum):
+class MyEstatus(enum.Enum):
     Activo = "Activo"
     Inactivo = "Inactivo"
     Bloqueado = "Bloqueado"
@@ -24,5 +24,3 @@ class User(Base):
     Estatus = Column(Enum(MyEstatus))
     Fecha_Registro = Column(DateTime)
     Fecha_Actualizacion = Column(DateTime)
-    # Clave foránea para la relación uno a uno con User
-    

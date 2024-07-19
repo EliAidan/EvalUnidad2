@@ -1,63 +1,51 @@
-from fastapi import APIRouter
-from pydantic import BaseModel
-from datetime import datetime
-
-usuario = APIRouter()
-usuarios=[]
-
-class model_usuarios(BaseModel):
-    id:int
-    usuario:str
-    password:str
-    id_persona: int
-    estatus: bool = False
-    created_at: datetime = datetime.now()
-    
-@usuario.get('/usuarios')
-
-def getUsuarios():
-    return usuarios
-
-@usuario.get('/usuarios/{id_usuario}')
-def get_usuario(id_usuario: int):
-    global usuarios
-    
-    # Buscar la persona por su ID
-    for usuario in usuarios:
-        if usuario.id == id_usuario:
-            return usuario
-
-    return f"No existe algun usuario con ese id: {id_persona} "
+# from fastapi import APIRouter
+# from pydantic import BaseModel
+# from datetime import datetime
 
 
-@usuario.post('/usuarios')
+# usuario = APIRouter()
+# usuarios = []
 
-def save_usuario(datos_usuario:model_usuarios):
-    usuarios.append(datos_usuario)
-    return "Datos guardados correctamente"
+# class model_usuarios(BaseModel):
+#     id:int
+#     usuario:str
+#     contrasena:str
+#     persona_id:int
+#     created_at:datetime = datetime.now()
+#     estatus:bool = False
 
-@usuario.delete('/usuarios/{id_usuario}')
 
-def delete_usuario(id_usuario: int):
-    global usuarios
-    
-    # Buscar la persona por su ID
-    for i, usuario in enumerate(usuarios):
-        if usuario.id == id_usuario:
-            del usuarios[i]
-            return f"Dato con ID {id_usuario} eliminado correctamente."
-    return f"No existe algun usuario con ese id: {id_usuario} "
 
-@usuario.put('/usuarios/{id_usuario}')
-def update_usuario(id_usuario: int, datos_usuario: model_usuarios):
-    global usuarios
-    
-    # Buscar la persona por su ID
-    for usuario in usuarios:
-        if usuario.id == id_usuario:
-            # Actualizar los campos de la persona
-            usuario.usuario = datos_usuario.usuario
-            usuario.password = datos_usuario.password
+# @usuario.get("/usuarios")
+# def get_usuarios():
+#     return usuarios
 
-            return f"Dato con ID {id_usuario} actualizado correctamente."
-    return f"No existe algun usuario con ese id: {id_usuario} "
+# @usuario.post("/usuarios")
+# def saveUsuarios(datos_usuario:model_usuarios):
+#     usuarios.append(datos_usuario)
+#     return "Datos guardados correctamente"
+
+
+# @usuario.get("/usuarios/{usuario_id}")
+# def get_usuarios(usuario_id: int):
+#     for usuario in usuarios:
+#         if usuario.id == usuario_id:
+#             return usuario
+        
+# @usuario.put("/usuarios/{usuario_id}")
+# def update_usuarios(usuario_id: int, datos_usuario: model_usuarios):
+#     for index, usuario in enumerate(usuarios):
+#         if usuario.id == usuario_id:
+#             # Evitar actualizar el campo 'id'
+#             datos_usuario.id = usuario.id  # Mantener el mismo id
+#             usuarios[index] = datos_usuario
+#             return "Datos actualizados correctamente"
+
+
+
+# @usuario.delete("/usuarios/{usuario_id}")
+# def delete_usuarios(usuario_id: int):
+#     for index, usuario in enumerate(usuarios):
+#         if usuario.id == usuario_id:
+#             del usuarios[index]
+#             return "Persona eliminada correctamente"

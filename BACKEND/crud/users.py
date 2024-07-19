@@ -9,19 +9,23 @@ def get_user(db: Session, id: int):
 def get_user_by_usuario(db: Session, usuario: str):
     return db.query(models.users.User).filter(models.users.User.Nombre_Usuario == usuario).first()
 
+def get_user_by_credentials(db: Session, usuario: str,Correo_Electronico:str,Telefono:str, password:str):
+    return db.query(models.users.User).filter((models.users.User.Nombre_Usuario == usuario) | 
+                                              (models.users.User.Correo_Electronico==Correo_Electronico)|
+                                              (models.users.User.Numero_Telefonico_Movil==Telefono),
+                                              models.users.User.Contrasena == password).first()
+    
+
+
+
+
+
 def get_users(db: Session, skip: int = 0, limit: int = 10):
     return db.query(models.users.User).offset(skip).limit(limit).all()
 
 def create_user(db: Session, user: schemas.users.UserCreate):
-    db_user = models.users.User(Persona_ID = user.Persona_ID,
-                                Nombre_Usuario=user.Nombre_Usuario,
-                                Correo_Electronico = user.Correo_Electronico,
-                                Contrasena = user.Contrasena, 
-                                Numero_Telefonico_Movil=user.Numero_Telefonico_Movil, 
-                                Estatus=user.Estatus,
-                                Fecha_Registro = user.Fecha_Registro,
-                                Fecha_Actualizacion = user.Fecha_Actualizacion 
-                                )
+    db_user = models.users.User(Persona_ID = user.Persona_ID, Nombre_Usuario=user.Nombre_Usuario,Correo_Electronico = user.Correo_Electronico,Contrasena = user.Contrasena, Numero_Telefonico_Movil=user.Numero_Telefonico_Movil, Estatus=user.Estatus,Fecha_Registro = user.Fecha_Registro,Fecha_Actualizacion = user.Fecha_Actualizacion 
+)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
